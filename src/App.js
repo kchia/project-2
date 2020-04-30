@@ -8,37 +8,37 @@ import Movie from './components/Movie/Movie';
 import Footer from './components/Footer/Footer';
 
 function App() {
-	const url = 'https://ghibliapi.herokuapp.com/films';
-	const [films, setFilms] = useState([]);
+  const url = 'https://ghibliapi.herokuapp.com/films';
+  const [films, setFilms] = useState([]);
 
-	useEffect(() => {
-		fetch(url)
-			.then((response) => response.json())
-			.then((response) => {
-				setFilms(response);
-			})
-			.catch(console.error);
-	}, []);
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((response) => {
+        setFilms(response);
+      })
+      .catch(console.error);
+  }, []);
 
-	return (
-		<div className='App'>
-			<Header />
-			<Switch>
-				<Route path='/' exact={true} component={Homepage} />
-				<Route
-					path='/films'
-					exact={true}
-					render={(props) => <MovieList films={films} />}
-				/>
-				<Route
-					path='/films/:id'
-					exact={true}
-					render={(props) => <Movie match={props.match} films={films} />}
-				/>
-			</Switch>
-			<Footer />
-		</div>
-	);
+  return (
+    <div className="App">
+      <Header />
+      <Switch>
+        <Route path="/" exact={true} component={Homepage} />
+        <Route
+          path="/films"
+          exact={true}
+          render={(props) => <MovieList films={films} />}
+        />
+        <Route
+          path="/films/:id"
+          exact={true}
+          render={(props) => <Movie match={props.match} />}
+        />
+      </Switch>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
